@@ -47,6 +47,7 @@ function buildBoard() {
   // console.table(board);
   renderBoard(board);
   setMinesNegsCount(board);
+  return board;
 }
 // update the DOM
 
@@ -54,17 +55,17 @@ function getRandom(board) {
   return Math.random(MINE);
 }
 function setMinesNegsCount(board, rowIdx, colIdx) {
-  var minesAroundCount = 0;
+  var minesCount = 0;
+
   for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
     if (i < 0 || i >= board.length) continue;
     for (var j = colIdx - 1; j <= colIdx + 1; j++) {
       if (j < 0 || j >= board[0].length) continue;
       if (i === rowIdx && j === colIdx) continue;
-
-      var cellAround = board[i][j];
-      if (cellAround.minesAroundCount === MINE) minesAroundCount++;
+      var cellsAround = board[i][j];
+      if (cellsAround.minesAroundCount === MINE) minesCount++;
     }
   }
-  // console.log(board);
-  return minesAroundCount;
+  console.log(minesCount);
+  return minesCount;
 }
